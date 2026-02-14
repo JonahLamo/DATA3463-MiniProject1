@@ -1,0 +1,7 @@
+District_ID,Zoning_Type,YoY%_Zoning,Data_Error
+D01,Mixed-Use,15.4,
+D02,Res to Mixed-Use,33.3,
+D03,Residential,,missing_value
+D04,Com to Residential,66.7,
+D05,Residential,-66.7,
+D06,Heritage,-58.3,
