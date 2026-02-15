@@ -1,0 +1,7 @@
+District_ID,YoY%_Road,YoY%_Bike,Data_Error
+D01,5.3,33.3,
+D02,9.4,33.3,
+D03,-20.0,7.1,
+D04,-44.4,-20.0,
+D05,11.1,42.9,
+D06,,300.0,missing_value(YoY%_Road)

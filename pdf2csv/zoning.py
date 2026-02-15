@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import pdfplumber
 
 # read the pdf file and extract the table, basically just the same as in lecture 8
@@ -9,7 +10,6 @@ with pdfplumber.open(r"DATA3463\DATA3463-MiniProject1\data\Housing_Zoning_Update
 
 # convert the table to a pandas dataframe so its easier to work with, the first row of the table is the header, so we use that as the column names
 df = pd.DataFrame(table[1:], columns=table[0])
-
 # print(df) # quick check to see if everything worked, also needed to see what parts of the table we need to clean up
 
 # Replace the 'fi' that used to be an arrow with ' to ' in Zoning_Type
@@ -28,15 +28,20 @@ df['YoY%_Zoning'] = round((q1_2024 - q1_2023) / q1_2023 * 100, 1)
 # print(df) # Check to make sure the new column was created correctly, and that the values are correct
 
 # add new column 'data_error' the dataframe, which explains what error is in the data, if there is an error, otherwise it will be blank
-# Normal error types: missing_value, duplicate_row, whatever else we run into
+# Normal error types: missing_value, duplicate_row, whatever else we run into  followed by where the error is (e.g. missing_value: [YoY%_Zoning, Zoning_Type], duplicate_row: [District_ID])
 # In this case, the only error was the NULL in 'Units_Q1_2024' and consequently, the NaN in 'YoY%_Zoning' (which we care about unlike the 'Units_Q1_2024' column)
-df['Data_Error'] = df.apply(lambda row: 'missing_value' if pd.isna(row['YoY%_Zoning']) else '', axis=1)
-
+conditions = [
+    df['YoY%_Zoning'].isna()
+]
+choices = [
+    'missing_value(YoY%_Zoning)'
+]
+df['Data_Error'] = np.select(conditions, choices, default='')
 # print(df) # Check to make sure the new column was created correctly, and that the values are correct
 
 # Make a new dataframe with only the columns we want to export to csv, which are the 'District_ID', 'Zoning_Type' and 'YoY%_Zoning' columns
 new_df = df[['District_ID', 'Zoning_Type', 'YoY%_Zoning', 'Data_Error']]
-print(new_df) # make sure the new dataframe looks correct
+# print(new_df) # make sure the new dataframe looks correct
 
 # Export the new dataframe to a csv file, without the index
 new_df.to_csv(r"DATA3463\DATA3463-MiniProject1\data\phase1Outputs\zoning.csv", index=False)

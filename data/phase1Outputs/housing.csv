@@ -1,0 +1,7 @@
+District_ID,YoY%_Housing,Green_Space_2023_sq_m,Data_Error
+D01,26.3,3500.5,
+D02,-13.5,4200.0,
+D03,,2100.25,missing_value(YoY%_Housing)
+D04,62.5,,missing_value(Green_Space_2023_sq_m)
+D05,14.3,800.0,
+D06,-46.4,950.2,

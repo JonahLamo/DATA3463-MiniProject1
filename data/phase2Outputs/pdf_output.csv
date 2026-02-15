@@ -1,0 +1,7 @@
+District_ID,YoY%_Housing,Green_Space_2023_sq_m,YoY%_Road,YoY%_Bike,Zoning_Type,YoY%_Zoning,Data_Errors
+D01,26.3,3500.5,5.3,33.3,Mixed-Use,15.4,
+D02,-13.5,4200.0,9.4,33.3,Res to Mixed-Use,33.3,
+D03,,2100.25,-20.0,7.1,Residential,,missing_value(YoY%_Housing); missing_value(YoY%_Zoning)
+D04,62.5,,-44.4,-20.0,Com to Residential,66.7,missing_value(Green_Space_2023_sq_m)
+D05,14.3,800.0,11.1,42.9,Residential,-66.7,
+D06,-46.4,950.2,,300.0,Heritage,-58.3,missing_value(YoY%_Road)
