@@ -1,0 +1,7 @@
+District_ID,YoY%_Housing,Green_Space_2023_sq_m,YoY%_Road,YoY%_Bike,Zoning_Type,YoY%_Zoning,District_Name,temp,percip_mm,humid_percent,wind_kmh,aqi_catagory,Population,Median_Income,Employment_Rate,Total_Units,Data_Error
+D01,26.3,3500.5,5.3,33.3,Mixed-Use,15.4,Downtown,12.3,2.0,68,15.2,Good,45200,72500.0,78.0,365.0,duplicate_row(Older value removed); duplicate_row(Project_ID: P1001)
+D02,-13.5,4200.0,9.4,33.3,Res to Mixed-Use,33.3,Riverside,11.8,0.0,72,12.8,Moderate,18500,65000.0,73.0,45.0,
+D03,,2100.25,-20.0,7.1,Residential,,Northgate,10.5,5.2,81,18.5,Moderate,22000,,69.0,0.0,missing_value(YoY%_Housing); missing_value(YoY%_Zoning); missing_value(Median_Income); missing_value(Estimated_Units in Project P1003); missing_value(Estimated_Units in Project P1009); missing_value(Estimated_Units in Project P1014)
+D04,62.5,,-44.4,-20.0,Com to Residential,66.7,Southridge,13.0,0.0,65,10.3,Good,15000,59000.5,,100.0,missing_value(Green_Space_2023_sq_m); missing_value(Employment_Rate)
+D05,14.3,800.0,11.1,42.9,Residential,-66.7,Westfield,9.7,1.1,75,22.1,Moderate,12500,81000.0,82.0,117.0,
+D06,-46.4,950.2,,300.0,Heritage,-58.3,Oldtown,12.0,0.2,70,,Good,8200,47000.0,65.0,5.0,missing_value(YoY%_Road); missing_value(wind_kmh); missing_value(Estimated_Units in Project P1012)

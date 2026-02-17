@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 
-file = 'Weather_AQI_feed.json'
+file = r'DATA3463\DATA3463-MiniProject1\data\Weather_AQI_feed.json'
 
 #open that shit
 with open(file, "r") as f:
@@ -26,4 +26,4 @@ df["Data_Errors"] = df.apply(
 
 #print(df)
 #output to csv
-df.to_csv('json_output.csv')
+df.to_csv(r"DATA3463\DATA3463-MiniProject1\data\phase2Outputs\json_output.csv", index=False)

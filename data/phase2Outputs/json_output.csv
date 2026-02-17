@@ -1,7 +1,7 @@
-,District_ID,District_Name,temp,percip_mm,humid_percent,wind_kmh,aqi_catagory,Data_Errors
-0,D01,Downtown,12.3,2.0,68,15.2,Good,
-1,D02,Riverside,11.8,0.0,72,12.8,Moderate,
-2,D03,Northgate,10.5,5.2,81,18.5,Moderate,
-3,D04,Southridge,13.0,0.0,65,10.3,Good,
-4,D05,Westfield,9.7,1.1,75,22.1,Moderate,
-5,D06,Oldtown,12.0,0.2,70,,Good,missing_value(wind_kmh)
+District_ID,District_Name,temp,percip_mm,humid_percent,wind_kmh,aqi_catagory,Data_Errors
+D01,Downtown,12.3,2.0,68,15.2,Good,
+D02,Riverside,11.8,0.0,72,12.8,Moderate,
+D03,Northgate,10.5,5.2,81,18.5,Moderate,
+D04,Southridge,13.0,0.0,65,10.3,Good,
+D05,Westfield,9.7,1.1,75,22.1,Moderate,
+D06,Oldtown,12.0,0.2,70,,Good,missing_value(wind_kmh)

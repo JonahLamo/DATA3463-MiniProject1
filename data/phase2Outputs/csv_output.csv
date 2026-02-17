@@ -1,0 +1,7 @@
+District_ID,Population,Median_Income,Employment_Rate,Total_Units,Data_Errors
+D01,45200,72500.0,78.0,365.0,duplicate_row(Older value removed); duplicate_row(Project_ID: P1001)
+D02,18500,65000.0,73.0,45.0,
+D03,22000,,69.0,0.0,missing_value(Median_Income); missing_value(Estimated_Units in Project P1003); missing_value(Estimated_Units in Project P1009); missing_value(Estimated_Units in Project P1014)
+D04,15000,59000.5,,100.0,missing_value(Employment_Rate)
+D05,12500,81000.0,82.0,117.0,
+D06,8200,47000.0,65.0,5.0,missing_value(Estimated_Units in Project P1012)

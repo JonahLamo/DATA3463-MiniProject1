@@ -1,5 +1,4 @@
 import pandas as pd
-import re
 
 # Phase 2 is just to combine the three csv files we created in phase 1 into one csv file (merging on District_ID)
 
