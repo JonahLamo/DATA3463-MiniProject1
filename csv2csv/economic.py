@@ -39,12 +39,9 @@ df['Employment_Rate'] = df['Employment_Rate'].apply(clean_employment_rate)
 # create the Data_Error column
 def get_errors(row):
     errors = []
-    if pd.isna(row['Population']):
-        errors.append('missing_value(Population)')
-    if pd.isna(row['Median_Income']):
-        errors.append('missing_value(Median_Income)')
-    if pd.isna(row['Employment_Rate']):
-        errors.append('missing_value(Employment_Rate)')
+    for col in df.columns:
+        if pd.isna(row[col]):
+            errors.append(f'missing_value({col})')
     return '; '.join(errors)
 df['Data_Error'] = df.apply(get_errors, axis=1)
 # print(df) # check to make sure the new column was created correctly

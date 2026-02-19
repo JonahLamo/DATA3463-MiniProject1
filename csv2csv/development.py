@@ -7,8 +7,9 @@ df = pd.read_csv(r"DATA3463\DATA3463-MiniProject1\data\City_Development_Projects
 # function to create the Data_Error column, which checks for missing values in the Estimated_Units column and duplicate Project_IDs, and creates error messages accordingly
 def get_errors(row):
     errors = []
-    if pd.isna(row['Estimated_Units']):
-        errors.append(f'missing_value(Estimated_Units in Project {row["Project_ID"]})')
+    for col in df.columns:
+        if pd.isna(row[col]):
+            errors.append(f'missing_value({col} in Project_ID: {row["Project_ID"]})')
     if row['Project_ID'] in duplicates['Project_ID'].values:
         errors.append(f'duplicate_row(Project_ID: {row["Project_ID"]})')
     return '; '.join(errors)

@@ -13,26 +13,21 @@ df = pd.DataFrame(table[1:], columns=table[0])
 # print(df) # quick check to see if everything worked, also needed to see what parts of the table we need to clean up
 
 # Create the YoY%_Housing column, same stuff as before, but we have to do it for the 'Housing' column
-housing_2022 = pd.to_numeric(df['Units_2022'], errors='coerce')
-housing_2023 = pd.to_numeric(df['Units_2023'], errors='coerce')
-df['YoY%_Housing'] = round((housing_2023 - housing_2022) / housing_2022 * 100, 1)
-# print(df) # Check to make sure the new column was created correctly, and that the values are correct
-
-# We are interested in the 'Green_Space_2023_sq_m' column too this time so we have to fix the "NULL" string there too
+df['Units_2022'] = pd.to_numeric(df['Units_2022'], errors='coerce')
+df['Units_2023'] = pd.to_numeric(df['Units_2023'], errors='coerce')
+# We are also interested in the 'Green_Space_2023_sq_m' column too this time so we have to fix the "NULL" string there too
 df['Green_Space_2023_sq_m'] = pd.to_numeric(df['Green_Space_2023_sq_m'], errors='coerce')
 
 # add Data_Error column, same as last time, but also for the 'Green_Space_2023_sq_m' column this time
-conditions = [
-    df['YoY%_Housing'].isna() & df['Green_Space_2023_sq_m'].isna(),
-    df['YoY%_Housing'].isna(),
-    df['Green_Space_2023_sq_m'].isna()
-]
-choices = [
-    'missing_value(YoY%_Housing); missing_value(Green_Space_2023_sq_m)',
-    'missing_value(YoY%_Housing)',
-    'missing_value(Green_Space_2023_sq_m)'
-]
-df['Data_Error'] = np.select(conditions, choices, default='')
+df["Data_Error"] = df.apply(
+    lambda row: "; ".join(
+        [f"missing_value({col})" for col in row.index[row.isna()]]
+    ),
+    axis=1
+)
+# print(df) # Check to make sure the new column was created correctly, and that the values are correct
+
+df['YoY%_Housing'] = round((df['Units_2023'] - df['Units_2022']) / df['Units_2022'] * 100, 1)
 # print(df) # Check to make sure the new column was created correctly, and that the values are correct
 
 # Make a new dataframe with only the columns we want to export to csv, which are the 'District_ID', 'YoY%_Housing', and 'Data_Error' columns

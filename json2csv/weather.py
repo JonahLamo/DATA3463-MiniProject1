@@ -18,7 +18,7 @@ df = df.rename(columns = {'weather.temp_c':'temp', 'weather.precip_mm':'percip_m
 
 #search for missing values and add it to a new column called DataErrprs
 df["Data_Errors"] = df.apply(
-    lambda row: ", ".join(
+    lambda row: "; ".join(
         [f"missing_value({col})" for col in row.index[row.isna()]]
     ),
     axis=1

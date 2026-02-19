@@ -15,25 +15,22 @@ df = pd.DataFrame(table[1:], columns=table[0])
 # Create the YoY%_Road and YoY%_Bike columns
 # While the 'YoY_%' columns exist with the same information, it is easier to calculate in a new column that it is to clean up the 'YoY_%' columns
 # This is just the same process as in zoning.py, but we have to do it for both the 'Road' and 'Bike' columns
-road_2024 = pd.to_numeric(df['Road_2024_km'], errors='coerce')
-road_2023 = pd.to_numeric(df['Road_2023_km'], errors='coerce')
-df['YoY%_Road'] = round((road_2024 - road_2023) / road_2023 * 100, 1)
-bike_2024 = pd.to_numeric(df['Bike_2024_km'], errors='coerce')
-bike_2023 = pd.to_numeric(df['Bike_2023_km'], errors='coerce')
-df['YoY%_Bike'] = round((bike_2024 - bike_2023) / bike_2023 * 100, 1)
-# print(df) # Check to make sure the new columns were created correctly, and that the values are correct
-conditions = [
-    df['YoY%_Road'].isna() & df['YoY%_Bike'].isna(),
-    df['YoY%_Road'].isna(),
-    df['YoY%_Bike'].isna()
-]
-choices = [
-    'missing_value(YoY%_Road); missing_value(YoY%_Bike)',
-    'missing_value(YoY%_Road)',
-    'missing_value(YoY%_Bike)'
-]
-df['Data_Error'] = np.select(conditions, choices, default='')
+df['Road_2024_km'] = pd.to_numeric(df['Road_2024_km'], errors='coerce')
+df['Road_2023_km'] = pd.to_numeric(df['Road_2023_km'], errors='coerce')
+df['Bike_2024_km'] = pd.to_numeric(df['Bike_2024_km'], errors='coerce')
+df['Bike_2023_km'] = pd.to_numeric(df['Bike_2023_km'], errors='coerce')
+
+df["Data_Error"] = df.apply(
+    lambda row: "; ".join(
+        [f"missing_value({col})" for col in row.index[row.isna()]]
+    ),
+    axis=1
+)
 # print(df) # Check to make sure the new column was created correctly, and that the values are correct
+
+df['YoY%_Bike'] = round((df['Bike_2024_km'] - df['Bike_2023_km']) / df['Bike_2023_km'] * 100, 1)
+df['YoY%_Road'] = round((df['Road_2024_km'] - df['Road_2023_km']) / df['Road_2023_km'] * 100, 1)
+# print(df) # Check to make sure the new columns were created correctly, and that the values are correct
 
 # Make a new dataframe with only the columns we want to export to csv, which are the 'District_ID', 'YoY%_Road', 'YoY%_Bike', and 'Data_Error' columns
 new_df = df[['District_ID', 'YoY%_Road', 'YoY%_Bike', 'Data_Error']]
